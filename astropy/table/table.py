@@ -2419,7 +2419,7 @@ class Table:
 
         return data.argsort(**kwargs)
 
-    def sort(self, keys=None):
+    def sort(self, keys=None, descending=False):
         '''
         Sort the table according to one or more keys. This operates
         on the existing table and does not return a new table.
@@ -2429,6 +2429,9 @@ class Table:
         keys : str or list of str
             The key(s) to order the table by. If None, use the
             primary index of the Table.
+            
+        descending : bool
+            If true, table will be sorted in descending order.
 
         Examples
         --------
@@ -2476,6 +2479,9 @@ class Table:
             sort_index._frozen = prev_frozen
             # now relabel the sort index appropriately
             sort_index.sort()
+            
+        if descending:
+            self.reverse()
 
     def reverse(self):
         '''
